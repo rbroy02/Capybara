@@ -300,7 +300,7 @@ if __name__ == "__main__":
 def run_full_calculation(
     flow_rate_lpm: float,
     initial_ph: float,
-    target_ph: float = 7.5,
+    target_ph: float = 8.0,
     safety_factor: float = 2.5,
     residence_time_min: float = 20.0,
     supply_days: float = 7.0,
@@ -338,6 +338,13 @@ def run_full_calculation(
             "supply_days": supply_days,
             "pump_headroom": pump_headroom,
             "note": "Design basis calculation only. Verify with titration data before final specification.",
+            "standards_referenced": [
+                "WSAA Australian Wastewater Quality Management Guidelines",
+                "National Water Quality Management Strategy (NWQMS)",
+                "AS/NZS applicable codes",
+                "EPA Victoria and local water authority guidelines",
+            ],
+            "trade_waste_ph_range": "6.0-10.0 (per SPN trade waste agreement)",
         },
     }
 
