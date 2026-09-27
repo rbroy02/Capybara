@@ -1,0 +1,45 @@
+=== CORE CHEMISTRY CHECKS ===
+pH 4.5 → 7.5: 0.000032 mol/L of H+ (base required (raise pH))
+pH 11.0 → 7.5: 0.001000 mol/L of OH- (acid required (lower pH))
+pH 7.5 → 7.5: no dosing required (already at target)
+
+=== TITRATION DEMO ===
+Mode: titration
+Dosing rate: 12.00 L/h
+Daily chemical volume: 96.00 L/day
+
+=== SPN FLOW SENSITIVITY ANALYSIS ===
+SPN average flow rates (24 h/day averaging basis):
+Day 1: 92.15 L/min
+Day 2: 144.03 L/min
+Day 3: 121.92 L/min
+Day 4: 25.50 L/min
+Day 5: 24.18 L/min
+Scenario count: 20
+Output ranges:
+{'reaction_tank_total_volume_L': {'minimum': 580.3333333333334, 'maximum': 3456.833333333333}, 'transfer_pump_capacity_L_per_hour': {'minimum': 2176.25, 'maximum': 12963.125}, 'pipe_required_diameter_mm': {'minimum': 22.65, 'maximum': 55.29}, 'dosing_rate_L_per_hour': {'minimum': 0.0010586642373366412, 'maximum': 0.2000282204861111}, 'chemical_storage_total_volume_L': {'minimum': 0.21342671024706686, 'maximum': 40.325689249999996}, 'dosing_pump_capacity_L_per_hour': {'minimum': 0.0015879963560049618, 'maximum': 0.30004233072916664}}
+
+=== SPRINT 3 VALIDATION SUITE ===
+PASS - Acidic case selects base and produces positive dose
+PASS - Alkaline case selects acid and produces positive dose
+PASS - Same-pH case gives zero dose
+PASS - Wrong chemical role is rejected
+PASS - Incomplete chemical data is rejected
+PASS - Titration dose scales correctly
+PASS - SPN low-flow case converts and sizes correctly
+PASS - SPN high-flow case converts and sizes correctly
+PASS - Preliminary pipe sizing selects DN50 at 100 L/min
+PASS - SPN sensitivity range returns 20 valid scenarios
+Validation summary: 10/10 passed, 0 failed.
+
+=== SPRINT 4 CSC-56 INTEGRATED OUTPUT VALIDATION ===
+PASS - Integrated output contains the CSC-56 data-contract sections
+PASS - Target pH 8.0 is inside the configured 6.0-10.0 range
+PASS - Target outside trade-waste range is flagged for review
+PASS - Titration mode is represented in the same integrated schema
+PASS - Sensitivity summary is embedded without duplicating calculations
+PASS - All five SPN flow cases run through the integrated output
+CSC-56 validation summary: 6/6 passed, 0 failed.
+Integrated schema: CSC-56-v1
+Compliance status: TARGET_RANGE_ACCEPTABLE
+Sensitivity scenarios: 20

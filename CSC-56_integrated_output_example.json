@@ -1,0 +1,96 @@
+{
+  "schema_version": "CSC-56-v1",
+  "design_status": "PRELIMINARY_DESIGN_OUTPUT",
+  "design_summary": {
+    "flow_rate_L_per_min": 92.15277777777777,
+    "initial_ph": 5.0,
+    "target_ph": 8.0,
+    "calculation_mode": "ph_screening",
+    "treatment_direction": "base required (raise pH)",
+    "reaction_tank_total_volume_L": 2211.6666666666665,
+    "transfer_pump_capacity_L_per_hour": 8293.75,
+    "required_pipe_internal_diameter_mm": 44.22,
+    "preliminary_pipe_DN": 50,
+    "dosing_rate_L_per_hour": 0.012786197916666665,
+    "dosing_rate_L_per_day": 0.30686874999999997,
+    "chemical_storage_total_volume_L": 2.5776974999999998,
+    "dosing_pump_capacity_L_per_hour": 0.019179296874999998
+  },
+  "compliance": {
+    "trade_waste_ph": {
+      "target_ph": 8.0,
+      "accepted_range": {
+        "minimum_ph": 6.0,
+        "maximum_ph": 10.0
+      },
+      "within_range": true,
+      "status": "WITHIN_TARGET_RANGE",
+      "basis": "design target/setpoint check only",
+      "note": "The target pH is inside the configured trade-waste pH range. Operational compliance still requires measured outlet pH."
+    },
+    "overall_status": "TARGET_RANGE_ACCEPTABLE",
+    "verification_note": "This is a design-target check, not measured discharge certification."
+  },
+  "equipment_requirements": {
+    "reaction_tank": {
+      "minimum_working_volume_L": 1843.0555555555554,
+      "minimum_total_volume_L": 2211.6666666666665
+    },
+    "transfer_pump": {
+      "minimum_flow_capacity_L_per_hour": 8293.75,
+      "required_pressure_bar": null,
+      "pressure_basis": "not calculated \u2014 pipework/elevation/hydraulic data required"
+    },
+    "process_pipe": {
+      "minimum_internal_diameter_mm": 44.22,
+      "preliminary_nominal_DN": 50,
+      "design_velocity_m_s": 1.0
+    },
+    "chemical_storage_tank": {
+      "minimum_working_volume_L": 2.1480812499999997,
+      "minimum_total_volume_L": 2.5776974999999998
+    },
+    "dosing_pump": {
+      "minimum_flow_capacity_L_per_hour": 0.019179296874999998,
+      "required_pressure_bar": null,
+      "pressure_basis": "not calculated \u2014 hydraulic/injection pressure data required"
+    }
+  },
+  "sensitivity_summary": {
+    "scenario_count": 20,
+    "output_ranges": {
+      "reaction_tank_total_volume_L": {
+        "minimum": 580.3333333333334,
+        "maximum": 3456.833333333333
+      },
+      "transfer_pump_capacity_L_per_hour": {
+        "minimum": 2176.25,
+        "maximum": 12963.125
+      },
+      "pipe_required_diameter_mm": {
+        "minimum": 22.65,
+        "maximum": 55.29
+      },
+      "dosing_rate_L_per_hour": {
+        "minimum": 0.0010586642373366412,
+        "maximum": 0.2000282204861111
+      },
+      "chemical_storage_total_volume_L": {
+        "minimum": 0.21342671024706686,
+        "maximum": 40.325689249999996
+      },
+      "dosing_pump_capacity_L_per_hour": {
+        "minimum": 0.0015879963560049618,
+        "maximum": 0.30004233072916664
+      }
+    },
+    "analysis_note": "pH scenarios are evaluated using explicit pH values rather than percentage changes because the pH scale is logarithmic."
+  },
+  "warnings": [
+    "Neutralisation demand is a pH-only screening estimate. It does not model wastewater buffering; verify final chemical dosing with titration or acidity/alkalinity data.",
+    "Chemical dose is based on pH-only screening and must be verified with representative titration or acidity/alkalinity data before final design.",
+    "Transfer-pump pressure/TDH is not yet calculated; final pump selection requires pipework, elevation, fittings, and downstream pressure data.",
+    "Dosing-pump injection/back-pressure is not yet calculated and must be confirmed before final pump selection.",
+    "Verify actual internal diameter, material, schedule, pressure drop, fittings, and allowable velocity during hydraulic design."
+  ]
+}
