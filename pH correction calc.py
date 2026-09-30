@@ -1,5 +1,24 @@
 import math
 
+def sanitise_number(value, field_name):
+    """Validate numerical input before calculations."""
+    if isinstance(value, bool):
+        raise ValueError(f"{field_name} must be a number.")
+
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        raise ValueError(
+            f"{field_name} must be a valid number."
+        )
+
+    if not math.isfinite(number):
+        raise ValueError(
+            f"{field_name} must be a finite number."
+        )
+
+    return number
+
 def trade_waste_ph_status(
     target_ph: float,
     minimum_ph: float = 6.0,
@@ -54,6 +73,42 @@ def validate_inputs(
 
     errors = []
     warnings = []
+    # CSC-50: Sanitise numerical inputs before validation.
+    numeric_inputs = {
+        "flow_rate_lpm": flow_rate_lpm,
+        "initial_ph": initial_ph,
+        "target_ph": target_ph,
+        "safety_factor": safety_factor,
+        "residence_time_min": residence_time_min,
+        "supply_days": supply_days,
+        "pump_headroom": pump_headroom,
+        "equivalents_per_mole": equivalents_per_mole,
+        "operating_hours_per_day": operating_hours_per_day,
+        "pipe_design_velocity_m_s": pipe_design_velocity_m_s,
+    }
+
+    for field, value in numeric_inputs.items():
+        try:
+            sanitise_number(value, field)
+        except ValueError as exc:
+            errors.append(str(exc))
+
+    optional_inputs = {
+        "molar_mass": molar_mass,
+        "solution_concentration": solution_concentration,
+        "solution_density": solution_density,
+        "titration_dose_ml_per_L": titration_dose_ml_per_L,
+    }
+
+    for field, value in optional_inputs.items():
+        if value is not None:
+            try:
+                sanitise_number(value, field)
+            except ValueError as exc:
+                errors.append(str(exc))
+
+    if errors:
+        raise ValueError("Invalid inputs:\n - " + "\n - ".join(errors))
     # Calculation mode validation.
     normalised_mode = None
     if not isinstance(calculation_mode, str):
@@ -1318,3 +1373,12 @@ if __name__ == "__main__":
     print("Sensitivity scenarios:", integrated_demo["sensitivity_summary"]["scenario_count"])
     if sprint4_validation["failed"]:
         raise AssertionError("One or more Sprint 4 CSC-56 validation cases failed.")
+
+print("\n=== CSC-50 SANITISATION TEST ===")
+
+for value in ["hello", None, float("nan"), float("inf"), 100]:
+    try:
+        result = sanitise_number(value, "flow_rate_lpm")
+        print(f"ACCEPTED: {value!r} -> {result}")
+    except ValueError as error:
+        print(f"REJECTED: {value!r} -> {error}")
