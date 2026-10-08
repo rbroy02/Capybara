@@ -1,0 +1,52 @@
+{
+  "release_candidate": "CSC-61-RC1",
+  "engine_file": "pH correction calc.py",
+  "engine_sha256": "382b5542eadedd498b0fc770d4445ffe1968d01d3c8a4ceb750b2b0f84321eb4",
+  "integrated_schema": "CSC-56-v1",
+  "total_checks": 8,
+  "passed": 8,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Sprint 3 regression validation",
+      "status": "PASS",
+      "detail": "10/10 Sprint 3 validation cases passed."
+    },
+    {
+      "name": "Sprint 4 CSC-56 regression validation",
+      "status": "PASS",
+      "detail": "6/6 CSC-56 integration validation cases passed."
+    },
+    {
+      "name": "pH-screening final workflow",
+      "status": "PASS",
+      "detail": "pH-screening workflow produced integrated sizing and dosing output."
+    },
+    {
+      "name": "Titration final workflow",
+      "status": "PASS",
+      "detail": "Titration workflow verified at 12 L/h and 96 L/day."
+    },
+    {
+      "name": "Trade-waste target-pH status",
+      "status": "PASS",
+      "detail": "Design-target pH status verified for inside and outside the configured 6.0\u201310.0 range."
+    },
+    {
+      "name": "Five SPN flow scenarios",
+      "status": "PASS",
+      "detail": "All five SPN daily-volume cases ran through the integrated output."
+    },
+    {
+      "name": "SPN sensitivity analysis",
+      "status": "PASS",
+      "detail": "20-case SPN flow \u00d7 pH sensitivity analysis verified."
+    },
+    {
+      "name": "Engineering warning coverage",
+      "status": "PASS",
+      "detail": "Expected engineering limitation warnings are present."
+    }
+  ],
+  "release_note": "Calculation-engine release candidate for Sprint 5 validation. Final project release still depends on integration evidence from the UI, equipment-selection/pricing, layout, controls and security modules."
+}
